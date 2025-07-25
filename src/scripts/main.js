@@ -220,7 +220,8 @@ function showMessage(text, type) {
         z-index: 1000;
         transform: translateX(100%);
         transition: transform 0.3s ease;
-        ${type === 'success' ? 'background: #059669;' : 'background: #dc2626;'}
+        border: 2px solid;
+        ${type === 'success' ? 'background: #000000; border-color: #dc2626; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);' : 'background: #dc2626; border-color: #000000; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.5);'}
     `;
     
     document.body.appendChild(messageDiv);
