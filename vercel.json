@@ -5,16 +5,14 @@
   ],
   "routes": [
     { 
-      "src": "/public/images/CV.pdf", 
-      "dest": "/public/images/CV.pdf",
+      "src": "/CV.pdf", 
+      "dest": "/CV.pdf",
       "headers": {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": "attachment; filename=Abdelaali_Safir_CV.pdf"
+        "Content-Type": "application/pdf"
       }
     },
     { "src": "/src/styles/(.*)", "dest": "/src/styles/$1" },
     { "src": "/src/scripts/(.*)", "dest": "/src/scripts/$1" },
-    { "src": "/public/images/(.*)", "dest": "/public/images/$1" },
     { "src": "/public/(.*)", "dest": "/public/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
