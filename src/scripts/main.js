@@ -157,9 +157,7 @@ filterButtons.forEach(button => {
 const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
+    // Get form data for validation
     const formData = new FormData(this);
     const name = formData.get('name');
     const email = formData.get('email');
@@ -168,11 +166,13 @@ contactForm.addEventListener('submit', function(e) {
     
     // Simple form validation
     if (!name || !email || !subject || !message) {
+        e.preventDefault();
         showMessage('Please fill in all fields.', 'error');
         return;
     }
     
     if (!isValidEmail(email)) {
+        e.preventDefault();
         showMessage('Please enter a valid email address.', 'error');
         return;
     }
@@ -183,23 +183,14 @@ contactForm.addEventListener('submit', function(e) {
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     submitBtn.disabled = true;
     
-    // Submit form (Netlify will handle this automatically)
-    fetch('/', {
-        method: 'POST',
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
-    })
-    .then(() => {
+    // Show success message (FormSubmit will handle the actual sending)
+    setTimeout(() => {
         showMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
-        this.reset();
-    })
-    .catch((error) => {
-        showMessage('Sorry, there was an error sending your message. Please try again.', 'error');
-    })
-    .finally(() => {
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
-    });
+    }, 1000);
+    
+    // Let the form submit normally to FormSubmit
 });
 
 // Show message function
